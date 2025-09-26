@@ -3,233 +3,83 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>PipocaClub — lembre tudo que você já viu</title>
-  <meta name="description" content="Avalie filmes, acompanhe séries e veja o que os amigos estão assistindo.">
-  <meta name="theme-color" content="#0F172A">
-  <!-- Tipografia: Urbanist. Se quiser 0 trackers, pode remover estas 2 linhas (o site usa fallbacks). -->
+  <title>PipocaClub — tudo sobre filmes e séries</title>
+  <meta name="description" content="Avalie filmes, acompanhe séries e descubra o que os amigos estão assistindo.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <!-- Favicon inline (placeholder) -->
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Crect width='256' height='256' rx='40' fill='%230F172A'/%3E%3Ccircle cx='110' cy='76' r='24' fill='%23FFE58F'/%3E%3Ccircle cx='132' cy='66' r='22' fill='%23FFCC33'/%3E%3Ccircle cx='152' cy='80' r='20' fill='%23FFD34D'/%3E%3Crect x='66' y='102' width='124' height='16' rx='8' fill='%239B1C1C' opacity='.45'/%3E%3C/svg%3E">
-  <!-- Open Graph básico -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="PipocaClub — lembre tudo que você já viu">
-  <meta property="og:description" content="Avalie filmes, acompanhe séries e veja o que os amigos estão assistindo.">
-  <meta property="og:url" content="https://pipocaclub.com.br/">
-
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root{
-      /* Paleta Pipoca */
-      --brand:#FFCC33;          /* amarelo pipoca */
-      --primary:#E21221;        /* vermelho principal */
-      --ink:#0F172A;            /* quase preto elegante */
-      --muted:#8A90A2;          /* textos suaves */
-      --surface:#0F1424;        /* cartões */
-      --surface-2:#0C1020;      /* seções */
-      --radius:16px;
-      --shadow:0 18px 50px rgba(0,0,0,.35);
-      /* Gradientes */
-      --grad-main:linear-gradient(100deg,#FFCC33 0%,#E21221 45%,#8C1EFF 100%);
-      --grad-soft:linear-gradient(180deg, rgba(255,204,51,.08), rgba(226,18,33,.06) 40%, rgba(12,16,32,.0) 100%);
-    }
-    *{box-sizing:border-box} html,body{margin:0;padding:0}
-    body{
-      font-family:"Urbanist",system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
-      color:#E8ECF6;background:#070A16; line-height:1.6;
-      -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
-    }
-    a{color:inherit}
-
-    .container{max-width:1120px;margin:auto;padding:0 20px}
-
-    /* Header */
-    header{position:sticky;top:0;z-index:20;
-      background:rgba(7,10,22,.55); backdrop-filter:saturate(160%) blur(10px);
-      border-bottom:1px solid rgba(255,255,255,.06)
-    }
-    .nav{display:flex;align-items:center;justify-content:space-between;min-height:72px}
-    .brand{display:flex;align-items:center;gap:12px;text-decoration:none;font-weight:800}
-    .logo{width:40px;height:40px;border-radius:12px;background:#0F172A;display:grid;place-items:center;
-      box-shadow:inset 0 0 0 1px rgba(255,255,255,.06)}
-    .brand span{font-size:20px;letter-spacing:.3px}
-
-    .nav-links{display:flex;gap:18px}
-    .nav-links a{opacity:.9;text-decoration:none}
-    .nav-links a:hover{opacity:1;text-decoration:underline}
-
-    /* Hero */
-    .hero{
-      padding:72px 0;
-      background:
-        radial-gradient(1200px 600px at 100% -50%, rgba(255,204,51,.18), transparent 60%),
-        radial-gradient(900px 500px at -10% -100%, rgba(226,18,33,.18), transparent 50%);
-    }
-    .grid{display:grid;grid-template-columns:1.1fr .9fr; gap:32px; align-items:center}
-    h1{font-size:clamp(36px,4.5vw,56px);line-height:1.05;margin:0 0 14px}
-    .ink-grad{background:var(--grad-main); -webkit-background-clip:text; background-clip:text; color:transparent}
-    .lead{font-size:1.125rem;color:var(--muted);max-width:62ch}
-
-    .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
-    .btn{display:inline-flex;align-items:center;justify-content:center;font-weight:800;border-radius:999px;
-      padding:14px 20px;text-decoration:none;border:1px solid rgba(255,255,255,.12); transition:transform .06s ease, box-shadow .2s ease}
-    .btn:active{transform:translateY(1px)}
-    .btn-primary{background:#fff;color:#0B0F1D}
-    .btn-primary:hover{box-shadow:var(--shadow)}
-    .btn-ghost{background:transparent;color:#fff}
-    .kicker{margin-top:10px;color:var(--muted)}
-
-    .hero-card{
-      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-      border:1px solid rgba(255,255,255,.10); border-radius:24px; padding:22px; box-shadow:var(--shadow)
-    }
-    .device{
-      border-radius:28px; padding:16px; background:var(--surface-2);
-      border:1px solid rgba(255,255,255,.08)
-    }
-    .device-inner{border-radius:20px; background:#0B0F1D; padding:18px; height:280px;
-      background-image:var(--grad-soft); position:relative; overflow:hidden}
-    .badge{
-      position:absolute; top:18px; left:18px; font-weight:800; font-size:.85rem;
-      padding:8px 12px; border-radius:999px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.12)
-    }
-    .pill{
-      position:absolute; bottom:18px; left:18px; display:inline-flex; gap:10px; align-items:center;
-      padding:10px 14px; border-radius:999px; background:#0F172A; border:1px solid rgba(255,255,255,.12)
-    }
-    .dot{width:10px;height:10px;border-radius:50%;background:var(--brand);box-shadow:0 0 0 4px rgba(255,204,51,.15)}
-
-    /* Seções */
-    section{padding:52px 0}
-    .section-title{font-size:28px;margin:0 0 16px}
-    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-    .card{
-      background:var(--surface); border:1px solid rgba(255,255,255,.08);
-      border-radius:var(--radius); padding:18px; box-shadow:var(--shadow)
-    }
-    .icon{font-size:20px; width:40px; height:40px; display:grid; place-items:center;
-      border-radius:12px; background:rgba(255,204,51,.18); margin-bottom:8px}
-
-    .about{display:grid;grid-template-columns:1.1fr .9fr; gap:20px}
-    .list{padding-left:18px; color:#C8CFDE}
-
-    /* Footer */
-    footer{border-top:1px solid rgba(255,255,255,.06); background:#070A16}
-    .foot{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:16px 0;color:#B7BDCE}
-    .foot a{color:#B7BDCE;text-decoration:none}
-    .foot a:hover{text-decoration:underline}
-
-    @media (max-width:900px){
-      .grid,.about{grid-template-columns:1fr}
-    }
+    body{margin:0;font-family:"Urbanist",sans-serif;background:#0D0D0F;color:#fff}
+    header{display:flex;justify-content:space-between;align-items:center;padding:16px 32px;background:#181A20;position:sticky;top:0;z-index:10}
+    .logo{font-weight:800;font-size:22px;color:#FFCC33;text-decoration:none}
+    nav a{margin:0 12px;text-decoration:none;color:#ccc;font-weight:600}
+    nav a:hover{color:#fff}
+    .cta a{margin-left:12px;padding:8px 16px;border-radius:24px;font-weight:700;text-decoration:none}
+    .cta .sign{background:#E21221;color:#fff}
+    .cta .login{border:1px solid #FFCC33;color:#FFCC33}
+    /* hero */
+    .hero{position:relative;height:60vh;background:url('https://image.tmdb.org/t/p/original/6qVF0gnLnbKCgcMfCpCB8GH7B5I.jpg') center/cover no-repeat;display:flex;align-items:flex-end}
+    .hero-overlay{width:100%;padding:40px;background:linear-gradient(180deg,transparent 0%,rgba(0,0,0,.85) 100%)}
+    .hero h1{margin:0;font-size:42px}
+    .hero p{margin:6px 0 20px;color:#ccc}
+    .btn-primary{display:inline-block;padding:12px 20px;background:#FFCC33;color:#0D0D0F;font-weight:800;border-radius:30px;text-decoration:none}
+    /* carrossel */
+    .section{padding:32px}
+    .section h2{margin:0 0 16px;font-size:24px}
+    .carousel{display:flex;gap:16px;overflow-x:auto;padding-bottom:8px}
+    .carousel::-webkit-scrollbar{display:none}
+    .poster{min-width:160px;height:240px;border-radius:12px;background:#222;flex-shrink:0;background-size:cover;background-position:center;box-shadow:0 6px 18px rgba(0,0,0,.6)}
+    footer{background:#181A20;padding:20px;text-align:center;color:#aaa;font-size:14px}
   </style>
 </head>
 <body>
   <header>
-    <div class="container nav">
-      <a class="brand" href="/" aria-label="PipocaClub">
-        <span class="logo">🍿</span><span>PipocaClub</span>
-      </a>
-      <nav class="nav-links">
-        <a href="#beneficios">Benefícios</a>
-        <a href="#sobre">Sobre</a>
-        <a href="#contato">Contato</a>
-      </nav>
+    <a class="logo" href="#">🍿 PipocaClub</a>
+    <nav>
+      <a href="#">Filmes</a>
+      <a href="#">Séries</a>
+      <a href="#">Comunidade</a>
+      <a href="#">Sobre</a>
+    </nav>
+    <div class="cta">
+      <a class="sign" href="https://play.google.com/store/apps/details?id=br.com.fingerfire.pipocaclub.android" target="_blank">Baixar App</a>
+      <a class="login" href="https://wa.me/5581XXXXXXXX">WhatsApp</a>
     </div>
   </header>
 
-  <main>
-    <!-- HERO -->
-    <section class="hero">
-      <div class="container grid">
-        <div>
-          <h1>Chegou o <span class="ink-grad">PipocaClub</span></h1>
-          <p class="lead">Avalie filmes (★1–★10), acompanhe o progresso das suas séries e veja o que os amigos estão assistindo — com visual moderno e foco em privacidade.</p>
-          <div class="cta">
-            <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=br.com.fingerfire.pipocaclub.android" target="_blank" rel="noopener">Baixar no Android</a>
-            <!-- Troque o número pelo seu (55 + DDD + número) -->
-            <a class="btn btn-ghost" href="https://wa.me/5581XXXXXXXX?text=Quero%20testar%20o%20PipocaClub">Falar no WhatsApp</a>
-          </div>
-          <p class="kicker">iOS em desenvolvimento 🤓</p>
-        </div>
+  <section class="hero">
+    <div class="hero-overlay">
+      <h1>Destaque: Deadpool</h1>
+      <p>Comédia, Ação — 2018</p>
+      <a class="btn-primary" href="#">Ver mais</a>
+    </div>
+  </section>
 
-        <aside class="hero-card">
-          <div class="device">
-            <div class="device-inner">
-              <div class="badge">Preview</div>
-              <div class="pill"><span class="dot"></span><strong style="margin-left:6px">PipocaClub</strong></div>
-            </div>
-          </div>
-          <p style="margin:14px 6px 0;color:#C8CFDE">Sem anúncios invasivos. Sem cookies de terceiros.</p>
-        </aside>
-      </div>
-    </section>
+  <section class="section">
+    <h2>Populares</h2>
+    <div class="carousel">
+      <div class="poster" style="background-image:url('https://image.tmdb.org/t/p/w300/ux6gkGSKNFtp2NFYxwYFxVWdnGa.jpg')"></div>
+      <div class="poster" style="background-image:url('https://image.tmdb.org/t/p/w300/8ChCpCYxh9YXusmHwcE9YzP0TSG.jpg')"></div>
+      <div class="poster" style="background-image:url('https://image.tmdb.org/t/p/w300/7WsyChQLEftFiDOVTGkv3hFpyyt.jpg')"></div>
+      <div class="poster" style="background-image:url('https://image.tmdb.org/t/p/w300/vSNxAJTlD0r02V9sPYpOjqDZXUK.jpg')"></div>
+      <div class="poster" style="background-image:url('https://image.tmdb.org/t/p/w300/aSdp2uS0jWkqdhCeyhJuCoiLZji.jpg')"></div>
+    </div>
+  </section>
 
-    <!-- BENEFÍCIOS -->
-    <section id="beneficios">
-      <div class="container">
-        <h2 class="section-title">Por que usar?</h2>
-        <div class="features">
-          <div class="card">
-            <div class="icon">⭐</div>
-            <h3>Notas e comentários</h3>
-            <p>Marque o que já viu e dê notas de 1 a 10 — com comentários rápidos.</p>
-          </div>
-          <div class="card">
-            <div class="icon">📺</div>
-            <h3>Progresso de séries</h3>
-            <p>Acompanhe temporadas/episódios e não se perca no que ficou faltando.</p>
-          </div>
-          <div class="card">
-            <div class="icon">👥</div>
-            <h3>Amigos e feed</h3>
-            <p>Descubra o que a galera está assistindo e pegue boas recomendações.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SOBRE -->
-    <section id="sobre">
-      <div class="container about">
-        <div class="card">
-          <h2 class="section-title">Sobre o PipocaClub</h2>
-          <p>Projeto independente focado em simplicidade e experiência. Nossa regra é clara: coletar o mínimo e explicar tudo com transparência.</p>
-          <ul class="list">
-            <li>Visual premium com a identidade do Pipoca.</li>
-            <li>LGPD em primeiro lugar (sem trackers de terceiros).</li>
-            <li>Comunidade leve e espaço para feedback.</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3 style="margin:0 0 8px">Participe dos próximos testes</h3>
-          <p>Quer acesso antecipado? Fala com a gente — adicionamos você à lista e avisamos nas próximas releases.</p>
-          <div class="cta">
-            <a class="btn btn-primary" href="mailto:contato@pipocaclub.com.br?subject=Quero%20participar%20do%20PipocaClub">Quero por e-mail</a>
-            <a class="btn btn-ghost" href="https://wa.me/5581XXXXXXXX?text=Quero%20participar%20dos%20testes%20do%20PipocaClub">Quero no WhatsApp</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTATO -->
-    <section id="contato">
-      <div class="container">
-        <div class="card">
-          <h2 class="section-title">Contato</h2>
-          <p>WhatsApp: <a href="https://wa.me/5581XXXXXXXX">55 (81) XXXXX-XXXX</a> • E-mail: <a href="mailto:contato@pipocaclub.com.br">contato@pipocaclub.com.br</a></p>
-          <p style="color:#A8B0C5;font-size:.95rem">Coletamos apenas o necessário para responder seu contato.</p>
-        </div>
-      </div>
-    </section>
-  </main>
+  <section class="section">
+    <h2>Séries em alta</h2>
+    <div class="carousel">
+      <div class="poster" style="background-image:url('https://image.tmdb.org/t/p/w300/roYyPiQDQKmIKUEhO912693tSja.jpg')"></div>
+      <div class="poster" style="background-image:url('https://image.tmdb.org/t/p/w300/u3bZgnGQ9T01sWNhyveQz0wH0Hl.jpg')"></div>
+      <div class="poster" style="background-image:url('https://image.tmdb.org/t/p/w300/rqeYMLryjcawh2JeRpCVUDXYM5b.jpg')"></div>
+      <div class="poster" style="background-image:url('https://image.tmdb.org/t/p/w300/yDWJYRAwMNKbIYT8ZB33qy84uzO.jpg')"></div>
+      <div class="poster" style="background-image:url('https://image.tmdb.org/t/p/w300/6kbAMLteGO8yyewYau6bJ683sw7.jpg')"></div>
+    </div>
+  </section>
 
   <footer>
-    <div class="container foot">
-      <span>© <span id="y"></span> PipocaClub</span>
-      <a href="#contato">Falar com a equipe</a>
-    </div>
+    © <span id="year"></span> PipocaClub — Feito com ♥ no Brasil
   </footer>
 
-  <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+  <script>document.getElementById("year").textContent=new Date().getFullYear()</script>
 </body>
 </html>
