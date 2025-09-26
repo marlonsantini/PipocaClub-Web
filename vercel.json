@@ -12,13 +12,5 @@
         }
       ]
     }
-  ],
-  "redirects": [
-    {
-      "source": "/(.*)",
-      "has": [{ "type": "host", "value": "www.pipocaclub.com.br" }],
-      "destination": "https://pipocaclub.com.br/$1",
-      "permanent": true
-    }
   ]
 }
