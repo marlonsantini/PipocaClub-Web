@@ -21,24 +21,22 @@
 <meta property="og:image:width" content="512">
 <meta property="og:image:height" content="512">
 
+<!-- Ícones (use seus PNGs) -->
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/ic_launcher.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/ic_launcher.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/ic_launcher.png">
+
 <style>
   :root{
-    /* Paleta alinhada ao app (azul destaque) */
-    --bg:#0D0D0F;
-    --surface:#181A20;
-    --surface-2:#20232B;
-    --ink:#FFFFFF;
-    --muted:#B6BAC6;
-    --primary:#335EF7;          /* azul Pipoca */
-    --primary-2:#7210FF;        /* roxo de apoio */
-    --accent:#FFCC33;           /* amarelo pipoca (detalhes) */
+    --bg:#0D0D0F; --surface:#181A20; --surface-2:#20232B;
+    --ink:#FFFFFF; --muted:#B6BAC6;
+    --primary:#335EF7; --primary-2:#7210FF; --accent:#FFCC33;
     --radius:14px;
   }
   *{box-sizing:border-box} html,body{margin:0;padding:0}
   body{font-family:"Urbanist",system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;background:var(--bg);color:var(--ink)}
   .container{max-width:1200px;margin:0 auto;padding:0 20px}
 
-  /* Header */
   header{position:sticky;top:0;z-index:20;background:rgba(13,13,15,.75);backdrop-filter:saturate(160%) blur(8px);border-bottom:1px solid #262A33}
   .nav{display:flex;align-items:center;justify-content:space-between;min-height:72px}
   .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-weight:800}
@@ -46,14 +44,12 @@
   nav a{color:var(--muted);text-decoration:none;margin:0 12px;font-weight:600}
   nav a:hover{color:var(--ink)}
 
-  /* Botões */
   .btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 16px;border-radius:999px;font-weight:800;text-decoration:none;border:1px solid transparent;transition:transform .06s ease, box-shadow .2s ease}
   .btn:active{transform:translateY(1px)}
   .btn-primary{background:var(--primary);color:#fff;box-shadow:0 10px 30px rgba(51,94,247,.25)}
   .btn-primary:hover{box-shadow:0 16px 38px rgba(51,94,247,.35)}
   .btn-ghost{border-color:#3A3F4B;color:#E6E9F2;background:transparent}
 
-  /* HERO (dinâmico) */
   .hero{position:relative;min-height:60vh;display:flex;align-items:flex-end;background:#000}
   .hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:brightness(.58)}
   .hero-grad{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 20%, rgba(13,13,15,.85) 100%)}
@@ -62,7 +58,6 @@
   .hero p{margin:0 0 18px;color:#D8DCEE}
   .btn-lg{padding:12px 20px;border-radius:28px;background:linear-gradient(90deg,var(--primary),var(--primary-2));color:#fff;font-weight:900;text-decoration:none}
 
-  /* Seções / carrosséis */
   .section{padding:28px 0}
   .section h2{margin:0 0 14px;font-size:22px}
   .row{display:flex;gap:14px;overflow-x:auto;padding-bottom:6px;scroll-snap-type:x mandatory}
@@ -71,14 +66,14 @@
   .poster{min-width:160px;height:240px;border-radius:12px;flex-shrink:0;background:#222;background-size:cover;background-position:center;box-shadow:0 8px 18px rgba(0,0,0,.6);scroll-snap-align:start}
   .card{background:var(--surface-2);border:1px solid #2a2e36;border-radius:var(--radius);padding:16px;margin-top:12px;color:var(--muted)}
 
-  /* Footer */
   footer{background:var(--surface);border-top:1px solid #262A33;color:#AEB3C4}
   .foot{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:16px 0}
 
-  @media (max-width:900px){
-    nav{display:none}
-  }
+  @media (max-width:900px){ nav{display:none} }
 </style>
+
+<!-- JS externo para respeitar o CSP -->
+<script src="/script.js" defer></script>
 </head>
 <body>
 
@@ -97,7 +92,6 @@
   </div>
 </header>
 
-<!-- HERO dinâmico (trending do dia) -->
 <section class="hero" aria-label="Destaque do dia">
   <div id="hero-bg" class="hero-bg"></div>
   <div class="hero-grad" aria-hidden="true"></div>
@@ -122,8 +116,8 @@
 
   <section id="contato" class="section">
     <div class="card" style="background:var(--surface);border-color:#2a2e36;color:var(--muted)">
-      <h2 style="color:#fff;margin-top:0">Contato</h2>E-mail:
-      <a href="mailto:fingerfirecontato@gmail.com.br">fingerfirecontato@gmail.com.br</a>
+      <h2 style="color:#fff;margin-top:0">Contato</h2>
+      E-mail: <a href="mailto:fingerfirecontato@gmail.com">fingerfirecontato@gmail.com</a>
     </div>
   </section>
 </div>
@@ -134,63 +128,5 @@
     <span style="color:var(--muted)">Sem cookies de terceiros.</span>
   </div>
 </footer>
-
-<script>
-  document.getElementById('y').textContent = new Date().getFullYear();
-
-  const img = (path, size='w300') => path ? `https://image.tmdb.org/t/p/${size}${path}` : null;
-  const tmdbUrl = (item) => {
-    const type = item.media_type || (item.title ? 'movie' : 'tv');
-    return `https://www.themoviedb.org/${type}/${item.id}`;
-  };
-
-  async function fetchJson(url){
-    const r = await fetch(url);
-    if(!r.ok) throw new Error('Erro TMDB proxy: '+r.status);
-    return r.json();
-  }
-
-  async function loadHero(){
-    try{
-      const data = await fetchJson('/api/tmdb?list=trending_day');
-      const item = (data.results||[])[0];
-      if(!item) return;
-      const title = item.title || item.name;
-      const sub = (item.media_type === 'tv' ? 'Série' : 'Filme') +
-        ((item.release_date || item.first_air_date) ? ` • ${(item.release_date || item.first_air_date).slice(0,4)}` : '');
-      const bg = img(item.backdrop_path, 'w1280') || img(item.poster_path, 'w780');
-
-      document.getElementById('hero-title').textContent = title;
-      document.getElementById('hero-sub').textContent = sub;
-      document.getElementById('hero-btn').href = tmdbUrl(item);
-      if(bg) document.getElementById('hero-bg').style.backgroundImage = `url('${bg}')`;
-    }catch(e){
-      document.getElementById('hero-title').textContent = 'PipocaClub';
-      document.getElementById('hero-sub').textContent = 'Explore filmes e séries com a gente.';
-    }
-  }
-
-  async function loadRow(list, targetId){
-    try{
-      const data = await fetchJson(`/api/tmdb?list=${list}`);
-      const row = document.getElementById(targetId);
-      row.innerHTML = '';
-      (data.results||[]).slice(0,18).forEach(item=>{
-        const poster = img(item.poster_path) || img(item.backdrop_path);
-        if(!poster) return;
-        const a = document.createElement('a');
-        a.href = tmdbUrl(item); a.target = '_blank'; a.rel = 'noopener';
-        a.className = 'poster'; a.style.backgroundImage = `url('${poster}')`; a.title = item.title || item.name || '';
-        row.appendChild(a);
-      });
-    }catch(e){
-      // fallback minimal
-    }
-  }
-
-  loadHero();
-  loadRow('movie_popular','row-movies');
-  loadRow('tv_popular','row-series');
-</script>
 </body>
 </html>
