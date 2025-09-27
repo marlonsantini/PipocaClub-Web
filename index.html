@@ -33,101 +33,149 @@
 
   <style>
     :root{
-      --bg:#0D0D0F; --surface:#181A20; --surface-2:#20232B;
-      --ink:#FFFFFF; --muted:#B6BAC6;
-      --primary:#335EF7; --primary-2:#7210FF; --accent:#FFCC33;
-      --radius:16px; --shadow:0 18px 50px rgba(0,0,0,.35);
-    }
-    *{box-sizing:border-box} html,body{margin:0;padding:0}
-    body{font-family:"Urbanist",system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;background:var(--bg);color:var(--ink);line-height:1.6}
-    a{color:inherit}
-    .container{max-width:1180px;margin:auto;padding:0 20px}
+  --bg:#0D0D0F; --surface:#181A20; --surface-2:#20232B;
+  --ink:#FFFFFF; --muted:#B6BAC6;
+  --primary:#335EF7; --primary-2:#7210FF; --accent:#FFCC33;
+  --radius:16px; --shadow:0 18px 50px rgba(0,0,0,.35);
+}
 
-    /* Header */
-    header{position:sticky;top:0;z-index:20;background:rgba(13,13,15,.72);backdrop-filter:saturate(160%) blur(10px);border-bottom:1px solid #262A33}
-    .nav{display:flex;align-items:center;justify-content:space-between;min-height:76px}
-    .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink);font-weight:800}
-    .brand-logo{width:36px;height:36px;border-radius:10px;background:url('/assets/ic_launcher.png') center/cover no-repeat}
-    .nav-links{display:flex;gap:18px}
-    .nav-links a{color:#E6E9F2;opacity:.8;text-decoration:none;font-weight:600}
-    .nav-links a:hover{opacity:1}
-    .nav-toggle{display:none}
+/* Reset básico */
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:"Urbanist",system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+  background:var(--bg); color:var(--ink); line-height:1.6;
+}
+a{color:inherit}
 
-    /* Botões / badges */
-    .btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 16px;border-radius:999px;font-weight:800;text-decoration:none;border:1px solid transparent;transition:transform .06s ease, box-shadow .2s ease}
-    .btn:active{transform:translateY(1px)}
-    .btn-primary{background:var(--primary);color:#fff;box-shadow:0 10px 30px rgba(51,94,247,.25)}
-    .btn-primary:hover{box-shadow:0 18px 40px rgba(51,94,247,.35)}
-    .btn-ghost{border-color:#3A3F4B;color:#E6E9F2;background:transparent}
-    .badge-play{display:inline-block;border-radius:14px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.35);line-height:0}
+/* Container */
+.container{max-width:1180px;margin:auto;padding:0 20px}
 
-    /* HERO */
-    .hero{position:relative;isolation:isolate}
-    .hero-bg{
-      background:
-        radial-gradient(1200px 600px at 100% -50%, rgba(51,94,247,.28), transparent 60%),
-        radial-gradient(900px 500px at 0% -100%, rgba(114,16,255,.28), transparent 50%),
-        linear-gradient(120deg, #335EF7 0%, #7210FF 50%, #9E59FF 100%);
-      border-bottom-left-radius:32px;border-bottom-right-radius:32px;
-    }
-    .hero-inner{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:center;padding:72px 0 28px}
-    .hero h1{font-size:clamp(36px,4.8vw,64px);line-height:1.02;margin:0 0 10px}
-    .hero p.lead{font-size:1.175rem;color:#ECF0FF;opacity:.92;max-width:60ch;margin:0 0 18px}
-    .cta{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
-    .hero-note{margin-top:6px;color:#E6E9F2;opacity:.85}
+/* Header / Nav */
+header{
+  position:sticky; top:0; z-index:20;
+  background:rgba(13,13,15,.72);
+  backdrop-filter:saturate(160%) blur(10px);
+  border-bottom:1px solid #262A33;
+}
+.nav{display:flex;align-items:center;justify-content:space-between;min-height:76px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink);font-weight:800}
+.brand-logo{width:36px;height:36px;border-radius:10px;background:url('/assets/ic_launcher.png') center/cover no-repeat}
+.nav-links{display:flex;gap:18px}
+.nav-links a{color:#E6E9F2;opacity:.8;text-decoration:none;font-weight:600}
+.nav-links a:hover{opacity:1}
+.nav-toggle{display:none}
 
-    /* Phones mock */
-    .phones{position:relative;height:460px;display:grid;place-items:center}
-    .phone{
-      position:absolute;width:250px;height:520px;border-radius:38px;padding:16px;background:#0B0F1D;border:1px solid rgba(255,255,255,.08);
-      box-shadow:var(--shadow);overflow:hidden;transform-origin:center;
-    }
-    .phone img{width:100%;height:100%;object-fit:cover;display:block;border-radius:24px}
-    .phone.p1{transform:rotate(-14deg) translate(-20px,10px)}
-    .phone.p2{transform:rotate(10deg) translate(120px,30px)}
-    @media (prefers-reduced-motion: reduce){
-      .phone.p1,.phone.p2{transform:none}
-    }
+/* Botões / Badges */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:12px 16px;border-radius:999px;font-weight:800;
+  text-decoration:none;border:1px solid transparent;
+  transition:transform .06s ease, box-shadow .2s ease;
+}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:var(--primary);color:#fff;box-shadow:0 10px 30px rgba(51,94,247,.25)}
+.btn-primary:hover{box-shadow:0 18px 40px rgba(51,94,247,.35)}
+.btn-ghost{border-color:#3A3F4B;color:#E6E9F2;background:transparent}
+.btn-ghost:hover{background:rgba(255,255,255,.04)}
+.badge-play{display:inline-block;border-radius:14px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.35);line-height:0}
 
-    /* Seções */
-    section{padding:42px 0}
-    .section-title{font-size:28px;margin:0 0 16px}
-    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-    .card{background:var(--surface-2);border:1px solid #2a2e36;border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
-    .card p{color:var(--muted)}
-    .icon{font-size:20px;width:40px;height:40px;display:grid;place-items:center;border-radius:12px;background:rgba(51,94,247,.15);margin-bottom:8px}
+/* Acessibilidade: foco visível */
+a:focus-visible, button:focus-visible{
+  outline:2px solid #9ab0ff; outline-offset:2px; border-radius:8px;
+}
 
-    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-    .shot{border-radius:18px;border:1px solid #2a2e36;overflow:hidden;background:#0B0F1D}
+/* HERO */
+.hero{position:relative;isolation:isolate}
+.hero-bg{
+  background:
+    radial-gradient(1200px 600px at 100% -50%, rgba(51,94,247,.28), transparent 60%),
+    radial-gradient(900px 500px at 0% -100%, rgba(114,16,255,.28), transparent 50%),
+    linear-gradient(120deg, #335EF7 0%, #7210FF 50%, #9E59FF 100%);
+  border-bottom-left-radius:32px;border-bottom-right-radius:32px;
+}
+.hero-inner{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:center;padding:72px 0 28px}
+.hero h1{font-size:clamp(36px,4.8vw,64px);line-height:1.02;margin:0 0 10px}
+.hero p.lead{font-size:1.175rem;color:#F4F6FF;opacity:.96;max-width:60ch;margin:0 0 18px}
+.cta{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.hero-note{margin-top:6px;color:#E6E9F2;opacity:.85}
 
-    /* Galeria horizontal */
-    .carousel{display:flex;gap:12px;overflow-x:auto;padding-bottom:8px;scroll-snap-type:x mandatory}
-    .carousel::-webkit-scrollbar{height:8px}
-    .carousel::-webkit-scrollbar-thumb{background:#2a2e36;border-radius:8px}
-    .cap{min-width:220px;height:460px;border-radius:18px;overflow:hidden;border:1px solid #2a2e36;scroll-snap-align:start;background:#0B0F1D}
-    .cap img{width:100%;height:100%;object-fit:cover;display:block}
+/* Phones mock */
+.phones{position:relative;height:460px;display:grid;place-items:center}
+.phone{
+  position:absolute;width:250px;height:520px;border-radius:38px;padding:16px;
+  background:#0B0F1D;border:1px solid rgba(255,255,255,.08);
+  box-shadow:var(--shadow);overflow:hidden;transform-origin:center;
+}
+.phone img{width:100%;height:100%;object-fit:cover;display:block;border-radius:24px}
+.phone.p1{transform:rotate(-14deg) translate(-20px,10px)}
+.phone.p2{transform:rotate(10deg) translate(120px,30px)}
 
-    /* FAQ */
-    .faq details{background:var(--surface-2);border:1px solid #2a2e36;border-radius:14px;padding:14px 16px;margin:12px 0}
-    .faq summary{font-weight:800;cursor:pointer}
+/* Seções */
+section{padding:42px 0}
+.section-title{font-size:28px;margin:0 0 16px}
 
-    /* CTA final */
-    .cta-final{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+/* Benefícios */
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{
+  background:var(--surface-2); border:1px solid #2a2e36; border-radius:var(--radius);
+  padding:18px; box-shadow:0 18px 40px rgba(0,0,0,.25);
+}
+.card p{color:var(--muted)}
+.icon{
+  font-size:20px;width:40px;height:40px;display:grid;place-items:center;
+  border-radius:12px;background:rgba(51,94,247,.15);margin-bottom:8px;
+}
 
-    /* Footer */
-    footer{background:var(--surface);border-top:1px solid #262A33;color:#AEB3C4}
-    .foot{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:16px 0}
+/* Passos */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.shot{border-radius:18px;border:1px solid #2a2e36;overflow:hidden;background:#0B0F1D}
+.shot img{display:block;width:100%;height:auto}
 
-    /* Mobile */
-    @media (max-width:980px){
-      .hero-inner{grid-template-columns:1fr}
-      .phones{height:380px}
-      .phone{width:200px;height:420px}
-      .features,.steps{grid-template-columns:1fr}
-      .nav-links{display:none}
-      .nav-toggle{display:inline-flex;align-items:center;gap:8px;background:transparent;border:1px solid #2a2e36;padding:8px 12px;border-radius:999px;color:#E6E9F2;font-weight:700}
-      .nav.open .nav-links{display:flex;position:fixed;inset:76px 0 auto 0;background:var(--surface);padding:16px;border-bottom:1px solid #262A33}
-    }
+/* Galeria horizontal */
+.carousel{display:flex;gap:12px;overflow-x:auto;padding-bottom:8px;scroll-snap-type:x mandatory}
+.carousel::-webkit-scrollbar{height:8px}
+.carousel::-webkit-scrollbar-thumb{background:#2a2e36;border-radius:8px}
+.cap{
+  min-width:220px;height:460px;border-radius:18px;overflow:hidden;
+  border:1px solid #2a2e36;scroll-snap-align:start;background:#0B0F1D
+}
+.cap img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* FAQ */
+.faq details{background:var(--surface-2);border:1px solid #2a2e36;border-radius:14px;padding:14px 16px;margin:12px 0}
+.faq summary{font-weight:800;cursor:pointer}
+
+/* CTA final */
+.cta-final{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+
+/* Footer */
+footer{background:var(--surface);border-top:1px solid #262A33;color:#AEB3C4}
+.foot{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:16px 0}
+
+/* Motion-safe */
+@media (prefers-reduced-motion: reduce){
+  .phone.p1,.phone.p2{transform:none}
+  .btn:hover{box-shadow:none}
+}
+
+/* Mobile */
+@media (max-width:980px){
+  .hero-inner{grid-template-columns:1fr}
+  .phones{height:380px}
+  .phone{width:200px;height:420px}
+  .features,.steps{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .nav-toggle{
+    display:inline-flex;align-items:center;gap:8px;background:transparent;
+    border:1px solid #2a2e36;padding:8px 12px;border-radius:999px;
+    color:#E6E9F2;font-weight:700
+  }
+  .nav.open .nav-links{
+    display:flex;position:fixed;inset:76px 0 auto 0;background:var(--surface);
+    padding:16px;border-bottom:1px solid #262A33
+  }
+}
   </style>
 
   <!-- JSON-LD -->
