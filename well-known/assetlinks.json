@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "br.com.fingerfire.pipocaclub.android",
+      "sha256_cert_fingerprints": [
+        "4A:57:99:DB:2B:87:C8:DB:ED:C3:47:EB:28:7D:AF:BC:CF:DF:05:ED:0D:93:A9:16:37:ED:7C:6A:AB:74:9E:81"
+      ]
+    }
+  }
+]
