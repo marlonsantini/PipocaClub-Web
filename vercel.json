@@ -1,4 +1,9 @@
 {
+  "rewrites": [
+    { "source": "/.well-known/assetlinks.json", "destination": "/well-known/assetlinks.json" },
+    { "source": "/movie/:id", "destination": "/open.html?type=movie&id=:id" },
+    { "source": "/tv/:id", "destination": "/open.html?type=tv&id=:id" }
+  ],
   "headers": [
     {
       "source": "/(.*)",

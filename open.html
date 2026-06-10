@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Abrir no PipocaClub</title>
+  <meta name="theme-color" content="#0D0D0F">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/ic_launcher.png">
+  <style>
+    body{font-family:system-ui,sans-serif;background:#0D0D0F;color:#fff;display:flex;min-height:100vh;align-items:center;justify-content:center;margin:0;padding:24px}
+    .card{max-width:420px;background:#181A20;border:1px solid #2a2e36;border-radius:16px;padding:28px;text-align:center}
+    a.btn{display:inline-block;margin-top:16px;padding:12px 18px;border-radius:12px;background:#335EF7;color:#fff;text-decoration:none;font-weight:700}
+    p{color:#B6BAC6;line-height:1.6}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>PipocaClub</h1>
+    <p id="msg">Abrindo no app…</p>
+    <a class="btn" id="store" href="https://play.google.com/store/apps/details?id=br.com.fingerfire.pipocaclub.android" style="display:none">Baixar na Play Store</a>
+    <p><a href="/" style="color:#9ab0ff">Voltar ao site</a></p>
+  </div>
+  <script>
+    (function () {
+      var params = new URLSearchParams(location.search);
+      var type = params.get('type') || 'movie';
+      var id = params.get('id');
+      if (!id) {
+        document.getElementById('msg').textContent = 'Link inválido.';
+        return;
+      }
+      var path = type === 'tv' ? '/tv/' + id : '/movie/' + id;
+      var deepLink = 'https://pipocaclub.com.br' + path;
+      document.getElementById('msg').textContent = 'Se o app não abrir automaticamente, instale o PipocaClub.';
+      document.getElementById('store').style.display = 'inline-block';
+      location.replace(deepLink);
+    })();
+  </script>
+</body>
+</html>
